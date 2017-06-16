@@ -10,3 +10,6 @@ When you create an R studio notebook, the true output is an html notebook file t
 ```{r}
 plot(cars)
 ```
+**Also, this text is bold.**
+
+*And this text is italic.*
