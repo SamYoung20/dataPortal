@@ -1,5 +1,6 @@
 library(shiny)
 library(leaflet)
+library(jsonlite)
 
 # Police zones
 waterRiseLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/bfe3e93c27004a69921b629b92cd1f9f_0.geojson"
