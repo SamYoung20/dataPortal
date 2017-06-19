@@ -1,0 +1,15 @@
+---
+title: "Test R Notebook"
+output: html_notebook
+---
+
+So this is a test [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+When you create an R studio notebook, the true output is an html notebook file that allows us to display both text and the visual outputs of our code in the same file. In this case, testNotebook.nb.html (also in the repo) is the output file.
+
+```{r}
+plot(cars)
+```
+**Also, this text is bold.**
+
+*And this text is italic.*
