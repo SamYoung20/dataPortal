@@ -12,9 +12,9 @@ ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("map", width = "100%", height = "100%"),
   absolutePanel(top = 10, right = 10,
-                sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),
-                            value = range(quakes$mag), step = 0.1
-                ),
+                # sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),
+                #             value = range(quakes$mag), step = 0.1
+                # ),
                 selectInput("datasets", "Data Set", c("Police Data")),
                 checkboxInput("stationCheckbox", "Police Stations", TRUE),
                 checkboxInput("zoneCheckbox", "Police Zones", TRUE)
@@ -28,20 +28,20 @@ server <- function(input, output, session) {
       addProviderTiles(providers$CartoDB.Positron,
                        options = providerTileOptions(noWrap = TRUE)
       ) %>%
-      # addLayersControl(
-      #   overlayGroups = c("Police Stations", "Police Zones"),
-      #   options = layersControlOptions(collapsed = FALSE)
-      # ) %>%
       fitBounds(-71.5, 42, -70.5, 42.5)
   });
   
   observe({
+    m <- leafletProxy("map") %>%
+      removeGeoJSON("policeZones") %>%
+      addGeoJSON(ifelse(input$zoneCheckbox, policeZoneData, "{}"), layerId = "policeZones", weight = 2, color = "blue",
+                 fill = TRUE)
+  })
+  
+  observe({
     leafletProxy("map") %>%
-      clearShapes() %>%
-      addGeoJSON(policeStationData, layerId = "policeStations", 
-                 opacity = ifelse(input$stationCheckbox, 1, 0)) %>%
-      addGeoJSON(policeZoneData, layerId = "policeZones", weight = 2, color = "blue",
-                 fill = TRUE, opacity = ifelse(input$zoneCheckbox, 1, 0))
+      removeGeoJSON("policeStations") %>%
+      addGeoJSON(ifelse(input$stationCheckbox, policeStationData, "{}"), layerId = "policeStations")
   })
 }
 
