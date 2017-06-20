@@ -1,14 +1,18 @@
 library(shiny)
 library(leaflet)
+require(spatialEco)
 
 # Police zones
 policeZoneLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/9a3a8c427add450eaf45a470245680fc_5.geojson"
-policeZoneData <- readLines(policeZoneLink) %>% paste(collapse = "\n")
+policeZoneJson <- rgdal::readOGR(policeZoneLink, "OGRGeoJSON")
 # Police Stations
 policeStationLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/e5a0066d38ac4e2abbc7918197a4f6af_6.geojson"
-#policeStationData <- readLines(policeStationLink) %>% paste(collapse = "\n")
 policeStationJson <- rgdal::readOGR(policeStationLink, "OGRGeoJSON")
-df = data.frame(policeStationJson@coords)
+# Polling Locations
+pollingLocationLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/f7c6dc9eb6b14463a3dd87451beba13f_5.geojson"
+pollingJson <- rgdal::readOGR(pollingLocationLink, "OGRGeoJSON")
+pts.poly <- point.in.poly(pollingJson, policeZoneJson)
+numPollsInZones <- tapply(pts.poly@data$DISTRICT, pts.poly@data$ID, FUN=length)
 
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
@@ -30,21 +34,34 @@ server <- function(input, output, session) {
       addProviderTiles(providers$CartoDB.Positron,
                        options = providerTileOptions(noWrap = TRUE)
       ) %>%
+      addLegend("bottomright", pal = colorNumeric(
+        palette = "YlOrRd",
+        domain = numPollsInZones
+      ), values = numPollsInZones, title = "Polling Stations In Police District",
+      opacity = 1) %>%
       fitBounds(-71.5, 42, -70.5, 42.5)
   });
   
   observe({
     m <- leafletProxy("map") %>%
-      removeGeoJSON("policeZones") %>%
-      addGeoJSON(ifelse(input$zoneCheckbox, policeZoneData, "{}"), layerId = "policeZones", weight = 2, color = "blue",
-                 fill = TRUE)
+      clearShapes()
+    if(input$zoneCheckbox){
+        m %>% addPolygons(data = policeZoneJson, weight = 2, color = "blue",
+                          fill = TRUE, label = paste(as.character(numPollsInZones), " polling stations"), 
+                          fillColor = colorQuantile("YlOrRd", numPollsInZones)(numPollsInZones))
+    }
   })
   
+  
+  
   observe({
-    leafletProxy("map") %>%
-      clearMarkers() %>%
-      addCircleMarkers(data = policeStationJson, color = "purple", radius = 5,
-                       stroke = FALSE, fillOpacity = ifelse(input$stationCheckbox, 0.7, 0))
+    proxy <- leafletProxy("map") %>%
+      clearMarkers()
+    if(input$stationCheckbox){
+      proxy %>% addCircleMarkers(data = policeStationJson, color = "purple",
+                               radius = 5, stroke = FALSE, label = ~NAME,
+                               fillOpacity = 0.7)
+    }
   })
 }
 
