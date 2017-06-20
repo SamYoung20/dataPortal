@@ -6,7 +6,9 @@ policeZoneLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/9a3
 policeZoneData <- readLines(policeZoneLink) %>% paste(collapse = "\n")
 # Police Stations
 policeStationLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/e5a0066d38ac4e2abbc7918197a4f6af_6.geojson"
-policeStationData <- readLines(policeStationLink) %>% paste(collapse = "\n")
+#policeStationData <- readLines(policeStationLink) %>% paste(collapse = "\n")
+policeStationJson <- rgdal::readOGR(policeStationLink, "OGRGeoJSON")
+df = data.frame(policeStationJson@coords)
 
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
@@ -40,8 +42,9 @@ server <- function(input, output, session) {
   
   observe({
     leafletProxy("map") %>%
-      removeGeoJSON("policeStations") %>%
-      addGeoJSON(ifelse(input$stationCheckbox, policeStationData, "{}"), layerId = "policeStations")
+      clearMarkers() %>%
+      addCircleMarkers(data = policeStationJson, color = "purple", radius = 5,
+                       stroke = FALSE, fillOpacity = ifelse(input$stationCheckbox, 0.7, 0))
   })
 }
 
