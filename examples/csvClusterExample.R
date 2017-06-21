@@ -18,13 +18,14 @@ server <- function(input, output, session){
       # AND ADJUST PARAMETERS SO THAT lng, lat, AND popup MATCH WITH THE CORRECT COLUMN
       # OF THE DATA SET
       addCircleMarkers(data = markerData, lng = ~X, lat = ~Y, color = "purple",
-                       radius = 5, stroke = FALSE,
+                       radius = 10, stroke = FALSE,
                        fillOpacity = 0.7, group = "markers",
                        popup = ~paste(sep = "<br/>",
                                      paste("<b>",Park_Name,"</b>"),
                                      Address_Te,
                                      Neighborho
-                                     )
+                                     ),
+                       clusterOptions = markerClusterOptions()
                        )
   })
 }
