@@ -15,6 +15,7 @@ pollingJson <- rgdal::readOGR(pollingLocationLink, "OGRGeoJSON")
 pts.poly <- point.in.poly(pollingJson, policeZoneJson)
 numPollsInZones <- tapply(pts.poly@data$DISTRICT, pts.poly@data$ID, FUN=length)
 
+
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("map", width = "100%", height = "100%"),
@@ -22,7 +23,7 @@ ui <- bootstrapPage(
                 # sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),
                 #             value = range(quakes$mag), step = 0.1
                 # ),
-                selectInput("datasets", "Data Set", c("Police Data")),
+                selectInput("datasets", "Data Set", c("Police and Polls", "Green Neighborhoods")),
                 checkboxInput("stationCheckbox", "Police Stations", TRUE),
                 checkboxInput("zoneCheckbox", "Police Zones", TRUE)
   )
@@ -73,6 +74,15 @@ server <- function(input, output, session) {
       m %>% hideGroup("zones")
     }
   })
+  
+  # observe({
+  #   if(input$datasets == "Police and Polls"){
+  #     policeZoneJson = rgdal::readOGR(policeZoneLink, "OGRGeoJSON")
+  #   }else if(input$datasets == "Green Neighborhoods"){
+  #     policeZoneJson = rgdal::readOGR(neighborhoodLink, "OGRGeoJSON")
+  #   }
+  #   print(input$datasets)
+  # })
 }
 
 shinyApp(ui, server)
