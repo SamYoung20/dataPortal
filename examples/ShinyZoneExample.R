@@ -1,16 +1,47 @@
 library(shiny)
 library(leaflet)
-require(spatialEco)
+library(rgdal)
+library(spatialEco)
 
 # Police zones
 policeZoneLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/9a3a8c427add450eaf45a470245680fc_5.geojson"
-policeZoneJson <- rgdal::readOGR(policeZoneLink, "OGRGeoJSON")
+policeZoneFile <- "./data/policeZone.rds" 
 # Police Stations
 policeStationLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/e5a0066d38ac4e2abbc7918197a4f6af_6.geojson"
-policeStationJson <- rgdal::readOGR(policeStationLink, "OGRGeoJSON")
+policeStationFile <- "./data/policeStation.rds" 
 # Polling Locations
 pollingLocationLink <- "http://bostonopendata-boston.opendata.arcgis.com/datasets/f7c6dc9eb6b14463a3dd87451beba13f_5.geojson"
+pollingLocationFile <- "./data/pollingLocation.rds"
+
+policeZoneJson <- rgdal::readOGR(policeZoneLink, "OGRGeoJSON")
+policeStationJson <- rgdal::readOGR(policeStationLink, "OGRGeoJSON")
 pollingJson <- rgdal::readOGR(pollingLocationLink, "OGRGeoJSON")
+
+# if(file.exists(policeZoneFile)){
+#   policeZoneJson <- readRDS(policeZoneFile)
+# }else{
+#   policeZoneJson <- rgdal::readOGR(policeZoneLink, "OGRGeoJSON")
+#   saveRDS(policeZoneJson, policeZoneFile)
+# }
+# 
+# if(file.exists(policeStationFile)){
+#   policeStationJson <- readRDS(policeStationFile)
+# }else{
+#   policeStationJson <- rgdal::readOGR(policeStationLink, "OGRGeoJSON")
+#   saveRDS(policeStationJson, policeStationFile)
+# }
+# 
+# if(file.exists(pollingLocationFile)){
+#   pollingJson <- readRDS(policeStationFile)
+# }else{
+#   pollingJson <- rgdal::readOGR(pollingLocationLink, "OGRGeoJSON")
+#   saveRDS(pollingJson, pollingLocationFile)
+# }
+
+
+
+
+
 # functions to get number of locations in each zone
 pts.poly <- point.in.poly(pollingJson, policeZoneJson)
 numPollsInZones <- tapply(pts.poly@data$DISTRICT, pts.poly@data$ID, FUN=length)
