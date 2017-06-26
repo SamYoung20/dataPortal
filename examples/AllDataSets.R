@@ -1,13 +1,14 @@
 library(shiny)
 library(leaflet)
 library(rjson)
+library(rgdal)
 
 datasets <- fromJSON(readLines("https://data.boston.gov/api/3/action/package_search?q=geojson&rows=60"))$result$results
 titles <- lapply(datasets, function(x){
   return (x$title)
 })
-urls <- lapply(resources, function(x){
-  return (x[[1]]$url)
+urls <- lapply(datasets, function(x){
+  return (x$resources[[1]]$url)
 })
 data <- setNames(urls,titles)
 
