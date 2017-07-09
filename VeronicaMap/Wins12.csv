@@ -1,6 +1,6 @@
 Name,Where,What,Who,Why,OrderDate,GoLiveDate,lat,lng,link
-Tufts,Tufts,Discovery 730 CT,IAM- Connor Hutchinson,First Imaging at Tufts Since 1999,Q2,Q3,42.349598,-71.063541,https://gehealthcare-amer.my.salesforce.com/006a000001KgPqJ?nooverride=1
-MGH,MGH,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,42.361542,-71.0688334,http:\\www.MGH.org
+Tufts,Tufts Medical Center,Discovery 730 CT, RML - Keith Laneau |  IRM - Ron Egan| IAM - Connor Hutchinson ,First DI equipment to Tufts Medical Center since 1999,Q2,Q3,42.349598,-71.063541,https://gehealthcare-amer.my.salesforce.com/006a000001KgPqJ?nooverride=1
+MGH,MGH,Pristina Senographe 3D,RML- Shari Hirschfeld |  AM Colleen Kavanaugh| SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,42.361542,-71.0688334,https://gehealthcare-amer.my.salesforce.com/006a000001NpWSy?nooverride=1
 Yale,Yale,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,41.303229,-72.933826,http:\\www.google.com
 Cornell,Cornell,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,40.764991,-73.95479,http:\\www.google.com
 Brown,Brown,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,41.819064,-71.408277,http:\\www.google.com
@@ -9,4 +9,5 @@ Maine Medical,Maine Medical,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe
 Buffalo,Buffalo,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,42.886447,-78.87836,http:\\www.google.com
 North Maine,North Maine,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,47.140694,-68.269043,http:\\www.google.com
 Brigam,Brigam,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,42.33597,-71.10766,http:\\www.google.com
-Middlesex,Middlesex Medical Hospital,Pristina Senographe 3D,RML- Shari Hirschfeld SAM-Joe Kwiatek,First 3D Mamo in US,Q1,Q2,41.55466,-72.64815,https://gehealthcare-amer.my.salesforce.com/006a000001NpkmG?nooverride=1
+Wentworth-Douglass,Wentworth-Douglass Hospital, NM630 Nuclear Camera ,RML - Larry Abreu | IAM - Colleen Kavanagh ,"3rd GE Nuc in Partners System, displaced Siemmens with opportunity for two more wins over Siemmens in next 3 months.",Q2,Q3,43.213058,-70.874144,https://gehealthcare-amer.my.salesforce.com/006a000001NF99K?nooverride=1
+Harold Leever,Harold Leever Regional Cancer Center,Discovery MI-DR PET/CT,RML - Larry Abreau |  AM - Haig Tellalian ,1.4$ Deal Two Years in the making,Q2,Q3,41.541573,-73.080392,https://gehealthcare-amer.my.salesforce.com/006a000001A8CST?nooverride=1
