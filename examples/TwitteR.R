@@ -4,7 +4,7 @@ library(twitteR)
 
 ui = fluidPage(
     fluidRow(
-      column(4, textInput("searchkw", label = "search", value = "#dinner")),
+      column(4, textInput("searchkw", label = "search", value = "#fun")),
       column(4, textInput("lat", label = "latitude", value = 42.31)),
       column(4, textInput("long", label = "longitude", value = -71.05)),
       column(8, leafletOutput("myMap")),
