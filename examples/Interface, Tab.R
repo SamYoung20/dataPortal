@@ -45,12 +45,14 @@ ui = dashboardPage(
                  )
                         ), 
                  fluidRow(
-                   box(width = 6,  solidHeader = FALSE, collapsible = FALSE, fluidPage(tags$a(img(src="https://d21xlh2maitm24.cloudfront.net/bos/price-change.png?mtime=20170424123104", width = 275)
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)
                    ))),
-                   box(
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
+                   ),
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
                    )
                    ),
-                 fluidRow(box())
+                 fluidRow(box(width = 12,  solidHeader = FALSE, collapsible = FALSE))
                  )
                                                      
               
