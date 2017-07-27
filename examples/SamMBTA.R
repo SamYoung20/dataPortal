@@ -7,10 +7,10 @@ library(rgdal)
 
 
 
-tLines <- rgdal::readOGR(dsn = "/Users/212627506/Documents/Fellows/BostonFellowsR", layer = "MBTA_ARC")
+tLines <- rgdal::readOGR(dsn = "./mbta_rapid_transit", layer = "MBTA_ARC")
 tLines <- spTransform(tLines, CRS("+proj=longlat +datum=WGS84 +no_defs"))
 
-tStops <- readOGR(dsn = "/Users/212627506/Documents/Fellows/BostonFellowsR",
+tStops <- readOGR(dsn = "./mbta_rapid_transit",
                   layer = "MBTA_NODE") %>% spTransform(CRS("+proj=longlat +datum=WGS84 +no_defs"))
 boundaries <- rgdal::readOGR("./data/City_of_Boston_Boundary.geojson", "OGRGeoJSON")
 
