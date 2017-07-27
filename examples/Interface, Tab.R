@@ -55,30 +55,30 @@ ui = dashboardPage(
               fluidPage(
                 column(width = 12,
                   box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary'
-#                       ,fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
-#                                     leafletOutput("bikemap", height = "522px")
-#                                     ), 
-#                 column(width = 4, box(width = 12,  solidHeader = FALSE, collapsible = FALSE,
-#                        fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VeronicaMap/BikeCommuteIB2030.png",width = 275),href="https://www.boston.gov/transportation/go-boston-2030", 
-#                        target = "_blank")
-#                        ), h6("See what the city is doing to improve transportation by clicking the picture above.", align = "center")), 
-#                                        box(width = 12, title = "Further Research", solidHeader = TRUE, collapsible = FALSE,
-#                                        h6(a("Imagine Boston 2030 Transportation Plan",href="http://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Transportation.pdf",target="_blank")),
-#                                        h6(a("Hubway Bike Share System",href="https://www.thehubway.com",target="_blank")),
-#                                        h6(a("Boston Bike",href="https://www.boston.gov/departments/boston-bikes",target="_blank"))
-#                                        )
-#                 )
-#                        ), 
-#                 fluidRow(
-#                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)
-#                   ))),
-#                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
-#                   ),
-#                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
-#                   )
-#                   ),
-#                 fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000)
-#                 )),h6("How Los Angeles compares with their bike data.", align = "center")))
+                       ,fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
+                                     leafletOutput("bikemap", height = "522px")
+                                     ), 
+                 column(width = 4, box(width = 12,  solidHeader = FALSE, collapsible = FALSE,
+                        fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VeronicaMap/BikeCommuteIB2030.png",width = 275),href="https://www.boston.gov/transportation/go-boston-2030", 
+                        target = "_blank")
+                        ), h6("See what the city is doing to improve transportation by clicking the picture above.", align = "center")), 
+                                        box(width = 12, title = "Further Research", solidHeader = TRUE, collapsible = FALSE,
+                                        h6(a("Imagine Boston 2030 Transportation Plan",href="http://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Transportation.pdf",target="_blank")),
+                                        h6(a("Hubway Bike Share System",href="https://www.thehubway.com",target="_blank")),
+                                        h6(a("Boston Bike",href="https://www.boston.gov/departments/boston-bikes",target="_blank"))
+                                        )
+                 )
+                        ), 
+                 fluidRow(
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)
+                   ))),
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
+                   ),
+                   box(width = 4,  solidHeader = FALSE, collapsible = FALSE
+                   )
+                   ),
+                 fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000)
+                 )),h6("How Los Angeles compares with their bike data.", align = "center")))
                  )
                                                      
               
@@ -125,9 +125,7 @@ box(width = 12, title = "Transit", solidHeader = TRUE,collapsible = TRUE, status
                   )
                   ), 
                   fluidRow(
-                    box(width = 4,  solidHeader = FALSE, collapsible = FALSE
-                    ),
-                    box(width = 4,  solidHeader = FALSE, collapsible = FALSE
+                    box(width = 8,  solidHeader = FALSE, collapsible = FALSE
                     ),
                     box(width = 4,  solidHeader = FALSE, collapsible = FALSE
                     )
