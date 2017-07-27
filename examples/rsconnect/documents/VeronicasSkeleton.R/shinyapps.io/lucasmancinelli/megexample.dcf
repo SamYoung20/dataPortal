@@ -1,0 +1,11 @@
+name: megexample
+title: MegExample
+account: lucasmancinelli
+server: shinyapps.io
+appId: 199792
+bundleId: 916970
+url: https://lucasmancinelli.shinyapps.io/megexample/
+when: 1501100437.70797
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: AllDataSets.R|censusBlocks.R|censusShapeFile.R|checkbox2.R|collegesAndUniversities.R|csvClusterExample.R|csvExample.R|DevelopingNeighborhoodCrime.R|hubwaydata.R|Interface, Tab.R|LiveTimeDelays.R|mbtaLinesShapeFile.R|neighborhoodData.csv|SamMBTA.R|ShinyDensityExample.R|ShinyMarkerExample.R|ShinyWaterRise.R|ShinyZoneExample.R|SideBySide.R|StreetlightsFairmount.R|TestShinyApp.R|TwitteR.R|windowsLightBoston.R|data/City_of_Boston_Boundary.geojson|data/crime.rds|data/light.rds|data/policeStation.rds|data/policeZone.rds|data/pollingLocation.rds|data/pop.rds|data/publicWork.rds

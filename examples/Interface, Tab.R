@@ -29,8 +29,9 @@ ui = dashboardPage(
               fluidPage(
                 column(width = 12
                   ,box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary',
-                       fluidPage(box(width = 8,  height = "100%", title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
+                       fluidPage(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
                                      status = 'primary',
+                                     tags$style(type = "text/css", "#map {height: calc(100vh - 80px) !important;}"),
                                      leafletOutput("bikemap")
                                      ), 
                  column(width = 4, box(width = 12,  solidHeader = FALSE, collapsible = FALSE,
