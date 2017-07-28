@@ -46,20 +46,25 @@ parking_popuptext <- paste(sep="<br/>",
 hubway_popuptext <- paste(sep="<br/>",
                           hubwaystations$Station)
 ui = dashboardPage(
-  dashboardHeader(title = 'Fellows Map (WIP)',
+    dashboardHeader(title = 'Fellows Map (WIP)',
                   dropdownMenuOutput('task_menu')),
-  dashboardSidebar(sidebarMenu(
-    id = 'menu_tabs',
-    menuItem(div(img(src="https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_bus_bg-512.png", width=25), "Transportation"), tabName = 'Transportation'),
-    menuItem('Tester Tab', tabName = 'test'))),
-  dashboardBody(
-    tabItems(
-      tabItem(tabName = 'Transportation',
+    dashboardSidebar(sidebarMenu(
+      id = 'menu_tabs',
+      menuItem(div(img(src="https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_bus_bg-512.png", width=25), "Transportation"), tabName = 'Transportation'),
+      menuItem('Tester Tab', tabName = 'test'))),
+    dashboardBody(
+      tabItems(
+       tabItem(tabName = 'Transportation',
               fluidPage(
                 column(width = 12,
                   box(width = 12, solidHeader = TRUE, collapsible = FALSE,
-                      fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/MainInitiatives.PNG",width = 1050))
+                      fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/MainInitiatives.PNG",width = 1050)), style="text-align: center;")
                   ),
+                  fluidRow(box(width = 6, solidHeader = TRUE, collapsible = FALSE,
+                               fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Bostonian%20transportation-%202030.PNG",width = 299)), style="text-align: center;")
+                  ),box(width = 6, solidHeader = TRUE, collapsible = FALSE,
+                        fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Bostonian%20transportation-2.png",width = 500))
+                  )),
                   
                   box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary'
                        ,fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
