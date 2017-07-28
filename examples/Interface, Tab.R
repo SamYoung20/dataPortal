@@ -11,6 +11,9 @@ library(V8)
 library(RCurl)
 library(rgdal)
 
+rm(list = ls())
+members <- data.frame(name=c("Subway Delays", "Commuter Rail Delays"), nr=c('subway.mbtatrains.com','mbtatrains.com'))
+
 tLines <- rgdal::readOGR(dsn = "./mbta_rapid_transit", layer = "MBTA_ARC")
 tLines <- spTransform(tLines, CRS("+proj=longlat +datum=WGS84 +no_defs"))
 
@@ -54,6 +57,9 @@ ui = dashboardPage(
       tabItem(tabName = 'Transportation',
               fluidPage(
                 column(width = 12,
+                  box(width = 12, title = 'Constant Initial Page', solidHeader = TRUE, collapsible = FALSE
+                  ),
+                  
                   box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary'
                        ,fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
                                      leafletOutput("bikemap", height = "522px")
@@ -125,11 +131,27 @@ box(width = 12, title = "Transit", solidHeader = TRUE,collapsible = TRUE, status
                   )
                   ), 
                   fluidRow(
-                    box(width = 8,  solidHeader = FALSE, collapsible = FALSE
+                    box(width = 8, title = "MBTA Delays", solidHeader = TRUE, collapsible = FALSE,
+                        fluidPage(
+                                  sidebarLayout(
+                                    sidebarPanel(
+                                      fluidRow(
+                                        column(12, selectInput("Member", label=h5("Choose a option"),choices=members$name)
+                                        ))),
+                                    mainPanel(fluidRow(
+                                      htmlOutput("frame")
+                                    )
+                                    )
+                                  ))
                     ),
-                    box(width = 4,  solidHeader = FALSE, collapsible = FALSE
+                    column(width = 4,
+                    box(width = 12,  solidHeader = FALSE, collapsible = FALSE
+                    ),
+                    box(width = 12,  solidHeader = FALSE, collapsible = FALSE
+                    ),
+                    box(width = 12,  solidHeader = FALSE, collapsible = FALSE
                     )
-                  ),
+                  )),
                   fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000)
                   )),h6("How Los Angeles compares with their bike data.", align = "center"))))
               ))
@@ -212,7 +234,18 @@ server = function(input, output){
                        fillOpacity = 0.5, weight = .5, radius = 5)
     
   })
-  
+ 
+  observe({ 
+    query <- members[which(members$name==input$Member),2]
+    test <<- paste0("https://",query)
+  })
+  output$frame <- renderUI({
+    input$Member
+    my_test <- tags$iframe(src=test, height=700, width=500)
+    print(my_test)
+    my_test
+  })
+   
 }
 shinyApp(ui= ui, server = server)  
  
