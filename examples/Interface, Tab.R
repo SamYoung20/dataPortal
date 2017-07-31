@@ -52,6 +52,7 @@ data1 = c(39,34,14,6,5,2)
 X1960 = c(1,2,3,4,5,6)
 data2 <- data.frame(Categorie, data1, X1960)
 colors <- c('rgb(51, 255, 51)', 'rgb(0, 128, 255)', 'rgb(250, 0, 50)', 'rgb(127, 0, 255)','rgb(255, 51, 153)', 'rgb(30, 144, 255)')
+
 ui = dashboardPage(
     dashboardHeader(title = 'Fellows Map (WIP)',
                   dropdownMenuOutput('task_menu')),
@@ -65,12 +66,13 @@ ui = dashboardPage(
               fluidPage(
                 column(width = 12,
                   box(width = 12, solidHeader = TRUE, collapsible = FALSE,
-                      fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/MainInitiatives.PNG",width = 1050)), style="text-align: center;")
+                      fluidPage(h1(strong("Go Boston 2030")), h2("Imagining Our Transportation Future"), style="text-align: center;")
                   ),
-                  fluidRow(box(width = 6, solidHeader = TRUE, collapsible = FALSE,
-                               fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Bostonian%20transportation-%202030.PNG",width = 299)), style="text-align: center;")
-                  ),box(width = 6, solidHeader = TRUE, collapsible = FALSE,
-                        fluidPage(plotlyOutput("TransportationPie"))
+                  fluidRow(box(width = 6, title = "How Bostonians Get to Work Today", solidHeader = TRUE, collapsible = FALSE, status = 'primary', 
+                               fluidPage(plotlyOutput("TransportationPie"))
+                  ),
+                  box(width = 6, title = "How We Aspire to Get to Work in 2030", solidHeader = TRUE, collapsible = FALSE, status = 'primary',
+                               fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Bostonian%20transportation-%202030.PNG",width = 364)), style="text-align: center;")
                   )),
                   
                   box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary'
@@ -272,7 +274,7 @@ server = function(input, output){
                                line = list(color = '#FFFFFF', width = 1)),
                  #The 'pull' attribute can also be used to create space between the sectors
                  showlegend = FALSE) %>%
-      layout(title = 'How Bostonians Get to Work Today',
+      layout(
             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   })
