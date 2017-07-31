@@ -11,6 +11,8 @@ library(V8)
 library(RCurl)
 library(rgdal)
 
+
+#BERDO Declarations START
 BERDO <- geojsonio::geojson_read("http://bostonopendata-boston.opendata.arcgis.com/datasets/82595a1b793a49c2bce7d61b751bdca5_2.geojson", what = "sp")
 
 BERDO$EnergyStar_Score <- ifelse(is.na(BERDO$EnergyStar_Score),0, BERDO$EnergyStar_Score)
@@ -30,6 +32,7 @@ GHG_Emissions_Q3 <- summary(BERDO$GHG_Emissions)[5] #returns 3rd quartile of dat
 GHG_Emissions_UpperBound <- GHG_Emissions_Q3 + GHG_Emissions_IQR*1.5
 binEmissions <- c(seq(0,GHG_Emissions_UpperBound,GHG_Emissions_UpperBound/5), Inf)
 palEmissions <- colorBin("OrRd", domain = BERDO$GHG_Emissions,bins = binEmissions)
+#BERDO DECLARATIONS END
 
 ui = dashboardPage(
   dashboardHeader(title = 'Fellows Map (WIP)',dropdownMenuOutput('task_menu')),
@@ -56,14 +59,13 @@ ui = dashboardPage(
                                        width = 4, 
                                        box(
                                            width = 12,  solidHeader = FALSE, collapsible = FALSE,
-                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VeronicaMap/BikeCommuteIB2030.png",width = 275),href="https://www.boston.gov/transportation/go-boston-2030", target = "_blank")), 
-                                          h6("See what the city is doing to improve transportation by clicking the picture above.", align = "center") 
+                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VeronicaMap/BikeCommuteIB2030.png",width = 275),href="http://www.greenovateboston.org/", target = "_blank")), 
+                                          h5("See how we're making Boston greener.", align = "center") 
                                            ), 
                                        box(
                                            width = 12, title = "Further Research", solidHeader = TRUE, collapsible = FALSE,
-                                           h6(a("Imagine Boston 2030 Transportation Plan",href="http://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Transportation.pdf",target="_blank")),
-                                           h6(a("Hubway Bike Share System",href="https://www.thehubway.com",target="_blank")),
-                                           h6(a("Boston Bike",href="https://www.boston.gov/departments/boston-bikes",target="_blank")) 
+                                           h6(a("Imagine Boston 2030 Energy and Environment Plan",href="https://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Energy%20and%20Environment.pdf",target="_blank")),
+                                           h6(a("Greenovate City of Boston",href="http://www.greenovateboston.org/",target="_blank"))
                                            )
                                         )
                                 ), 
@@ -125,10 +127,11 @@ ui = dashboardPage(
 
     
 server = function(input, output){
+  #BERDO SERVER START
   output$BERDOmap <- renderLeaflet({
     leaflet()%>%
       addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-      setView(lng =-71.057083, lat = 42.3601, zoom = 14) %>%
+      setView(lng =-71.057083, lat = 42.3601, zoom = 15) %>%
       addPolygons(
         data=BERDO,
         group="Energy Rating",
@@ -137,7 +140,7 @@ server = function(input, output){
         color="black",
         fillColor=~palScore(EnergyStar_Score),
         fillOpacity=5,
-        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","Energy Score:",BERDO$EnergyStar_Score)
+        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","Energy Score:",ifelse(BERDO$EnergyStar_Score==0,"Not Enough Info",BERDO$EnergyStar_Score))
       )%>%
       addPolygons(
         data=BERDO,
@@ -147,7 +150,7 @@ server = function(input, output){
         color="black",
         fillColor=~palUsage(Site_Energy_Use),
         fillOpacity=5,
-        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","Energy Usage:",BERDO$Site_Energy_Use)
+        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","Energy Usage:",ifelse(BERDO$Site_Energy_Use==0,"Not Enough Info",BERDO$Site_Energy_Use))
       )%>%
       addPolygons(
         data=BERDO,
@@ -157,7 +160,7 @@ server = function(input, output){
         color="black",
         fillColor=~palEmissions(GHG_Emissions),
         fillOpacity=5,
-        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","GHG Emissions:", BERDO$GHG_Emissions)
+        popup=paste(BERDO$Property_Name,"<br/>","Type:",BERDO$Property_Uses,"<br/>","GHG Emissions:", ifelse(BERDO$GHG_Emissions==0,"Not Enough Info",BERDO$GHG_Emissions))
       )%>%
       addLayersControl(
         baseGroups = c("Energy Rating","Energy Usage","GHG Emissions"),
@@ -170,9 +173,9 @@ server = function(input, output){
         icon="fa-crosshairs", title="Locate Me",
         onClick=JS("function(btn, map){ map.locate({setView: true}); }")))%>%
       addMiniMap(width = 75, height = 75)
-      
+    
   })
-  
+    #BERDO SERVER END
 
 }
 shinyApp(ui= ui, server = server)  
