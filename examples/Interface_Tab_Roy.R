@@ -58,70 +58,33 @@ ui = dashboardPage(
                                 column(
                                        width = 4, 
                                        box(
-                                           width = 12,  solidHeader = FALSE, collapsible = FALSE,
-                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VeronicaMap/BikeCommuteIB2030.png",width = 275),href="http://www.greenovateboston.org/", target = "_blank")), 
+                                           width = 12,  solidHeader = TRUE, collapsible = FALSE, status='primary',
+                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/BERDO%20opening.JPG",width = 230),href="http://www.greenovateboston.org/", target = "_blank")), 
                                           h5("See how we're making Boston greener.", align = "center") 
-                                           ), 
-                                       box(
-                                           width = 12, title = "Further Research", solidHeader = TRUE, collapsible = FALSE,
-                                           h6(a("Imagine Boston 2030 Energy and Environment Plan",href="https://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Energy%20and%20Environment.pdf",target="_blank")),
-                                           h6(a("Greenovate City of Boston",href="http://www.greenovateboston.org/",target="_blank"))
                                            )
                                         )
                                 ), 
                         fluidRow(
-                                 box(width = 4,solidHeader = FALSE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)))),
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE),
+                                 box(width = 4,solidHeader = FALSE, collapsible = FALSE, status='primary',fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/emissions.JPG", width = 275)))),
+                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/types%20of%20energy.JPG", width = 200)))),
                                  box(width = 4,  solidHeader = FALSE, collapsible = FALSE)
                                  ),
                         fluidRow(
                                  box(
-                                     width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, 
-                                     fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000))),
+                                     width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, status='primary',
+                                     fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/sea%20level%20rise.JPG", width = 500,style="display: block; margin-left: auto; margin-right: auto;"))), #Style assignment centers the image
                                      h6("How Los Angeles compares with their bike data.", align = "center")
                                      )
-                                 )
-                       ),
-                   box(
-                       width = 12, title = "Drive", solidHeader = TRUE,collapsible = TRUE, status = 'primary', 
+                                 ),
                        fluidRow(
-                                box(width = 8, title = "Drive Map", solidHeader = TRUE, collapsible = FALSE,leafletOutput("drivemap", height = "522px")), 
-                                column(
-                                       width = 4, 
-                                       box(
-                                           width = 12,  solidHeader = FALSE, collapsible = FALSE,
-                                           fluidPage(
-                                                     tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/DriveCommuteIB2030.png",width = 275),
-                                                            href="http://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Transportation.pdf", 
-                                                            target = "_blank"
-                                                            )
-                                                     ), 
-                                           h6("See what the city is doing to improve transportation by clicking the picture above.", align = "center")
-                                           ), 
-                                       box(
-                                           width = 12, title = "How can you make the city of Boston safer?", solidHeader = TRUE, collapsible = FALSE,
-                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/VisionZero.PNG",width = 275),
-                                                            href="http://www.visionzeroboston.org/", 
-                                                            target = "_blank"
-                                                            )
-                                                     ), 
-                                           h6("See what you can do to improve transportation by clicking the picture above.", align = "center")
-                                           )
-                                         )
-                                  ), 
-                        fluidRow(
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE),
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE),
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE)
-                                 ),
-                        fluidRow(
-                                 box(
-                                     width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, 
-                                     fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000))),
-                                     h6("How Los Angeles compares with their bike data.", align = "center")
-                                     )
-                                 )
+                         box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed.jpg", width = 150),href="https://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Energy%20and%20Environment.pdf",target="_blank"))),
+                         box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed%20(2).jpg", width = 150),href="http://climatechangedata.boston.gov/",target="_blank"))),
+                         box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed%20(1).jpg", width = 150),href="http://www.greenribboncommission.org/",target="_blank"))),
+                         box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed.png", width = 150),href="http://www.greenovateboston.org/",target="_blank")))
+                         
+                                )
                        )
+                   
                   
               ))))))
 
