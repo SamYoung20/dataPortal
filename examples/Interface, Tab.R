@@ -51,7 +51,7 @@ Categorie = c('Drive Alone','Public Transit','Walk','Carpool','Other/Work from H
 data1 = c(39,34,14,6,5,2)
 X1960 = c(1,2,3,4,5,6)
 data2 <- data.frame(Categorie, data1, X1960)
-colors <- c('rgb(51, 255, 51)', 'rgb(0, 128, 255)', 'rgb(250, 0, 50)', 'rgb(127, 0, 255)','rgb(255, 51, 153)', 'rgb(30, 144, 255)')
+colors <- c('rgb(20, 155, 20)', 'rgb(0, 128, 255)', 'rgb(250, 0, 50)', 'rgb(127, 0, 255)','rgb(255, 51, 153)', 'rgb(30, 144, 255)')
 
 ui = dashboardPage(
     dashboardHeader(title = 'Fellows Map (WIP)',
@@ -75,8 +75,10 @@ ui = dashboardPage(
                                fluidPage(div(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Bostonian%20transportation-%202030.PNG",width = 364)), style="text-align: center;")
                   )),
                   
-                  box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary'
-                       ,fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
+                  box(width = 12, solidHeader = TRUE, collapsible = FALSE, 
+                      fluidPage(h1(strong("What Can You Do?")), h2(" "), style="text-align: center;", img(src="https://thumbnails-visually.netdna-ssl.com/commuting-without-a-car_5390f1cb4c051_w1500.jpg", width = 600)),
+                      box(width =12,title = "Bike", solidHeader = TRUE,collapsible = TRUE, status = 'primary',
+                       fluidRow(box(width = 8, title = "Bike Map", solidHeader = TRUE, collapsible = FALSE, 
                                      leafletOutput("bikemap", height = "522px")
                                      ), 
                  column(width = 4, box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
@@ -91,9 +93,9 @@ ui = dashboardPage(
                  )
                         ), 
                  fluidRow(
-                   box(width = 4,  solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)
-                   ))),
-                   box(width = 4,  solidHeader = TRUE, collapsible = FALSE
+                   box(width = 4,  solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/HubwayPrice.png", width = 275)))
+                   ),
+                   box(width = 4,  solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/examples/BikeInfoGraphic1.png", width = 275)))
                    ),
                    box(width = 4,  solidHeader = TRUE, collapsible = FALSE
                    )
@@ -117,7 +119,9 @@ ui = dashboardPage(
                                               target = "_blank")
                              ), h6("See what you can do to improve transportation by clicking the picture above.", align = "center"))
                   )
-                  ), 
+                  ),
+                  box(width = 12, solidHeader = TRUE, collapsible = FALSE,
+                          htmlOutput("VisionZeroiFrame")),
                   fluidRow(
                     box(width = 4,  solidHeader = TRUE, collapsible = FALSE
                     ),
@@ -126,8 +130,8 @@ ui = dashboardPage(
                     box(width = 4,  solidHeader = TRUE, collapsible = FALSE
                     )
                   ),
-                  fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000)
-                  )),h6("How Los Angeles compares with their bike data.", align = "center"))))
+                  fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://www.marsdd.com/wp-content/uploads/2016/03/smart-transportation-figure-9-comparing-fares.png", width = 950)
+                  )),h6(" ", align = "center"))))
                   , 
 
 box(width = 12, title = "Transit", solidHeader = TRUE,collapsible = TRUE, status = 'primary', 
@@ -146,32 +150,32 @@ box(width = 12, title = "Transit", solidHeader = TRUE,collapsible = TRUE, status
                   )
                   ), 
                   fluidRow(
-                    box(width = 8, title = "MBTA Delays", solidHeader = TRUE, collapsible = FALSE,
+                    box(width = 12, title = "MBTA Delays", solidHeader = TRUE, collapsible = FALSE,
                         fluidPage(
                                   sidebarLayout(
                                     sidebarPanel(
                                       fluidRow(
-                                        column(12, selectInput("Member", label=h5("Choose a option"),choices=members$name)
-                                        ))),
+                                        column(12, selectInput("Member", label=h5("Choose a option"),choices=members$name),
+                                             box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
+                                                 fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/examples/MBTAInfographic1.png",width = 180), style="text-align: center;")
+                                             ),
+                                             box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
+                                                 fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Screenshot%202017-07-28%2016.15.33.png",width = 180), style="text-align: center;")
+                                             ),
+                                             box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
+                                                 fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Screenshot%202017-07-28%2016.15.40.png",width = 180), style="text-align: center;")
+                                             ))
+                                      )),
                                     mainPanel(fluidRow(
-                                      htmlOutput("frame")
+                                      htmlOutput("MBTADelaysiFrame")
                                     )
                                     )
                                   ))
-                    ),
-                    column(width = 4,
-                    box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
-                        fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Screenshot%202017-07-28%2016.15.25.png",width = 275))
-                    ),
-                    box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
-                        fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Screenshot%202017-07-28%2016.15.33.png",width = 275))
-                    ),
-                    box(width = 12,  solidHeader = TRUE, collapsible = FALSE,
-                        fluidPage(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/master/Screenshot%202017-07-28%2016.15.40.png",width = 275))
                     )
-                  )),
+                  ),
                   fluidRow(box(width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/48ea29c88ca50cfeebcfc18c1bea66114c92db0b/Screenshot%202017-07-27%2013.39.44.png", width = 1000)
                   )),h6("How Los Angeles compares with their bike data.", align = "center"))))
+)
               ))
       )
       )
@@ -257,9 +261,9 @@ server = function(input, output){
     query <- members[which(members$name==input$Member),2]
     test <<- paste0("https://",query)
   })
-  output$frame <- renderUI({
+  output$MBTADelaysiFrame <- renderUI({
     input$Member
-    my_test <- tags$iframe(src=test, height=700, width=500)
+    my_test <- tags$iframe(src=test, height=700, width=650)
     print(my_test)
     my_test
   })
@@ -277,6 +281,10 @@ server = function(input, output){
       layout(
             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  })
+  
+  output$VisionZeroiFrame <- renderUI({
+    tags$iframe(src="http://app01.cityofboston.gov/VZSafety/", height=700, width=975)
   })
    
 }
