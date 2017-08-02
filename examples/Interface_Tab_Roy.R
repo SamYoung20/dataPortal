@@ -36,6 +36,7 @@ palEmissions <- colorBin("OrRd", domain = BERDO$GHG_Emissions,bins = binEmission
 
 ui = dashboardPage(
   dashboardHeader(title = 'Fellows Map (WIP)',dropdownMenuOutput('task_menu')),
+  #Creates the Tabs
   dashboardSidebar(
                    sidebarMenu(
                                id = 'menu_tabs',
@@ -43,6 +44,7 @@ ui = dashboardPage(
                                menuItem('Tester Tab', tabName = 'test')
                                )
                    ),
+  #Creates the Energy and Environment tab
   dashboardBody(
     tabItems(
       tabItem(tabName = 'Energy',
@@ -52,43 +54,39 @@ ui = dashboardPage(
                        width =12,title = "Energy and Environment", solidHeader = TRUE,collapsible = TRUE, status = 'primary',
                        fluidRow(
                                 box(
-                                    width = 8, title = "Energy Usage", solidHeader = TRUE, collapsible = FALSE, 
+                                    width = 8, title="Energy Usage by Building", solidHeader = TRUE, collapsible = FALSE, 
                                     leafletOutput("BERDOmap", height = "522px") 
                                     ), 
                                 column(
                                        width = 4, 
                                        box(
-                                           width = 12,  solidHeader = TRUE, collapsible = FALSE, status='primary',
-                                           fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/BERDO%20opening.JPG",width = 230),href="http://www.greenovateboston.org/", target = "_blank")), 
-                                          h5("See how we're making Boston greener.", align = "center") 
+                                           h3("This map displays the 2015 BERDO Report which includes 1,502 buildings and represents 31% of Boston's total building energy use."),
+                                           width = 12,solidHeader = FALSE, collapsible = FALSE, status='primary',background="blue"
                                            )
-                                        )
-                                ), 
+                                       )
+                                ),
                         fluidRow(
-                                 box(width = 4,solidHeader = FALSE, collapsible = FALSE, status='primary',fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/emissions.JPG", width = 275)))),
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/types%20of%20energy.JPG", width = 200)))),
-                                 box(width = 4,  solidHeader = FALSE, collapsible = FALSE)
+                                 box(width = 4,solidHeader = TRUE, collapsible = FALSE, status='primary',fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/emissions.JPG", width = 275)))),
+                                 box(width = 4,  solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/types%20of%20energy.JPG", width = 188,style="display: block; margin-left: auto; margin-right: auto;"))))
                                  ),
-                        fluidRow(
-                                 box(
-                                     width = 12, title = "How Does Boston Compare to Other Cities?", solidHeader = TRUE, collapsible = FALSE, status='primary',
-                                     fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/sea%20level%20rise.JPG", width = 500,style="display: block; margin-left: auto; margin-right: auto;"))), #Style assignment centers the image
-                                     h6("How Los Angeles compares with their bike data.", align = "center")
-                                     )
+                       fluidRow(
+                                box(width = 12, title="Boston's Sea Level",solidHeader = FALSE, collapsible = FALSE, status="primary",
+                                    h4("See how Boston's waterfront is expected to change in the years to come."),
+                                    htmlOutput("frame"),
+                                    h3("Some More Facts on the Sea Level Rise"),
+                                    fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/f7af9015f5baebdf5cddfd04a79d09379fabe4c7/examples/Energy%20and%20Environment%20pics/sea%20level%20rise.JPG", width = 500))) #Style assignment centers the image
+                                    )
+                                
                                  ),
                        fluidRow(
                          box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed.jpg", width = 150),href="https://imagine.boston.gov/wp-content/uploads/2017/07/Ib2030%20BOOK_Spreads--Energy%20and%20Environment.pdf",target="_blank"))),
                          box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed%20(2).jpg", width = 150),href="http://climatechangedata.boston.gov/",target="_blank"))),
                          box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed%20(1).jpg", width = 150),href="http://www.greenribboncommission.org/",target="_blank"))),
                          box(width = 3,solidHeader = TRUE, collapsible = FALSE, status='primary', fluidPage(tags$a(img(src="https://raw.githubusercontent.com/SamYoung20/dataPortal/6e0cc8ab3bedf1d5a42dbf0cbc4ce4558f858c2d/examples/Energy%20and%20Environment%20pics/unnamed.png", width = 150),href="http://www.greenovateboston.org/",target="_blank")))
-                         
                                 )
                        )
-                   
-                  
               ))))))
 
-    
 server = function(input, output){
   #BERDO SERVER START
   output$BERDOmap <- renderLeaflet({
@@ -136,9 +134,13 @@ server = function(input, output){
         icon="fa-crosshairs", title="Locate Me",
         onClick=JS("function(btn, map){ map.locate({setView: true}); }")))%>%
       addMiniMap(width = 75, height = 75)
-    
   })
     #BERDO SERVER END
+  
+  #IFRAME of Sea Level rise
+  output$frame <- renderUI({
+    tags$iframe(src="http://seachange.sasaki.com/", height=600, width=950)
+  })
 
 }
 shinyApp(ui= ui, server = server)  
